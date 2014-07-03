@@ -51,7 +51,7 @@ public class JdbcTemplateFoodDao extends JdbcDaoSupport implements FoodDao {
 	@Override
 	public void updateFoodPriceByName(String name, int newPrice) {
 		//TODO: implement
-		String sql = "Update food set price= ? where name = ?";
+		String sql = "UPDATE FOOD set price= ? where name = ?";
 		int  affectedRow = this.getJdbcTemplate().update(sql,newPrice, name );
 		if(affectedRow != 1) {
 			throw new RuntimeException("Not one row updated!");
@@ -62,7 +62,7 @@ public class JdbcTemplateFoodDao extends JdbcDaoSupport implements FoodDao {
 	public void save(List<Food> foods) {
 		//TODO: implement with batch
 		SqlParameterSource[] batch = createBatch(foods.toArray());
-		String sql = "insert into food VALUES(null, :Calories, :Vegan, :Name , :Price)";
+		String sql = "insert INTO food VALUES(null, :Calories, :Vegan, :Name , :Price)";
 		namedParameterJdbcTemplate.batchUpdate(sql, batch);
 		
 	}
